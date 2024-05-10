@@ -7,7 +7,7 @@ import time
 
 #define server IP address and port:
 server = '127.0.0.1'
-port = 5555
+port = 1234
 
 
 def main():
@@ -16,8 +16,10 @@ def main():
     print(net.id)
     print('connected')
     print('you are client number',net.id)
-    result = net.send('join')     #send a message to the server to join the game and initialize the game state
-    game = Game([result[1:(len(result))-1:1].split(',')])
+    #result = net.send('join')     #send a message to the server to join the game and initialize the game state
+
+    #game = Game([result[1:(len(result))-1:1].split(',')])
+    game = Game()
     game.player1 = sorted(game.deck[0:26])
     game.player2 = sorted(game.deck[26:52])
     if net.id == '1':

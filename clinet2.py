@@ -1,23 +1,23 @@
 import socket
 import random
-from network2 import *
-from gamefile import *
-from REALGAME import *
+import network2
+
+import REALGAME
 import time
 
 #define server IP address and port:
 server = '127.0.0.1'
-port = 5555
+port = 1234
 
 
 def main():
     print('in main')
-    net = Network()   #Connect to the server and initialize the network
+    net = network2.Network()   #Connect to the server and initialize the network
     print(net.id)
     print('connected')
     print('you are client number',net.id)
-    result = net.send('join')    #send a message to the server to join the game and initialize the game state
-    game = Game([result[1:(len(result))-1:1].split(',')])
+    #result = net.send('join')    #send a message to the server to join the game and initialize the game state
+    game = REALGAME.Game()
     game.player1 = sorted(game.deck[0:26])
     game.player2 = sorted(game.deck[26:52])
     if net.id == '1':
@@ -132,7 +132,5 @@ def main():
 
             else:
                 print("Invalid input for one or both players. Please choose valid card indices.")
-
-
 
 main()
